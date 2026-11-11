@@ -34,7 +34,9 @@ public class TasksService {
     }
 
     public List<TasksDTO> getTasksBetweenDates(LocalDateTime startDate, LocalDateTime finalDate){
-        return tasksConverter.toTasksDtoList(tasksRepository.findByEventDateBetween(startDate, finalDate));
+        return tasksConverter.toTasksDtoList(tasksRepository.findByEventDateBetweenAndNotificationStatusEnum(startDate,
+                finalDate,
+                NotificationStatusEnum.PENDING));
     }
 
     public List<TasksDTO> getTasksByUserEmail(String token){
