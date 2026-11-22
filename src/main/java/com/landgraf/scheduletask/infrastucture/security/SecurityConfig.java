@@ -1,5 +1,6 @@
 package com.landgraf.scheduletask.infrastucture.security;
 
+import com.landgraf.scheduletask.infrastucture.exception.UnauthorizedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,7 +25,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws UnauthorizedException {
         JwtRequestFilter jwtRequestFilter = new JwtRequestFilter(jwtUtil, userDetailsService);
 
         http
